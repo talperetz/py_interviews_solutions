@@ -57,7 +57,7 @@ class PhrasesSentence:
     def get_word_distance_between_phrases(self):
         """return num of words between two phrases in the sentence"""
         assert self.is_both_phrases_in_sentence(), "both phrases must be in sentence"
-        words_list = parse_sentence_to_words(self.between_phrases.strip())
+        words_list = parse_sentence_to_words(self.between_phrases)
         return len(words_list)
 
 
@@ -74,7 +74,7 @@ def parse_sentence_to_words(sentence):
     given :param sentence: string :return: list of words split according to space or comma
     """
     assert isinstance(sentence, str), "sentence must be string"
-    return re.split(r'\s|,', sentence)
+    return re.split(r'\s|,', sentence)[1:-1]  # split returns two empty strings at the end and start
 
 
 def get_min_word_distance_sentence(text, phrase1, phrase2, negation_word):

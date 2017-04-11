@@ -5,6 +5,7 @@
 """
 
 import unittest
+
 import minimal_word_distance_between_phrases
 
 __author__ = "Tal Peretz"
@@ -41,15 +42,15 @@ class SimpleTestCase(unittest.TestCase):
         self.assertEqual(min_word_distance_sentence.get_word_distance_between_phrases(), 4)
 
     def test_more_than_two_sentences(self):
-        text = "John Doe winner love music. John Doe aaa not love music. John Doe aa bbb ccc ddd love " \
-               "music. John Doe aaa ddd love music. John Doe aaa bbb ccc ddd a love music."
+        text = "John Doe,winner love music. John Doe aaa not love music. John Doe aa bbb ccc ddd love " \
+               "music. John Doe aaa ddd love music!!! John Doe aaa bbb ccc ddd a love music."
         phrase1 = "John Doe"
         phrase2 = "love music"
         negation_word = "not"
         min_word_distance_sentence = minimal_word_distance_between_phrases.get_min_word_distance_sentence(text, phrase1,
                                                                                                           phrase2,
                                                                                                           negation_word)
-        self.assertEqual(min_word_distance_sentence.whole_sentence, "John Doe winner love music")
+        self.assertEqual(min_word_distance_sentence.whole_sentence, "John Doe,winner love music")
         self.assertEqual(min_word_distance_sentence.get_word_distance_between_phrases(), 1)
 
 
